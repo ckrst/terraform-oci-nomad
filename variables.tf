@@ -5,3 +5,7 @@ variable "subnet_id" {
 variable "public_key" {
   description = "Public key"
 }
+
+variable "nomad_version" {
+  default = "1.1.0"
+}
