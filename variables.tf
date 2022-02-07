@@ -1,0 +1,3 @@
+variable "nomad" {
+  description = ""
+}
