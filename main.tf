@@ -3,7 +3,7 @@ data "oci_core_image" "ubuntu_image" {
 }
 
 locals {
-  kasm_initial_setup = <<EOF
+  nomad_server_initial_setup = <<EOF
 #!/bin/bash
 whoami
 apt update
