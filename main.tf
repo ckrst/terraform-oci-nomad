@@ -106,12 +106,12 @@ nomad version
 nomad -autocomplete-install
 complete -C /usr/local/bin/nomad nomad
 mkdir --parents /opt/nomad
-echo -e "${data.nomad_service.rendered}" > /etc/systemd/system/nomad.service
+echo -e "${data.template_file.nomad_service.rendered}" > /etc/systemd/system/nomad.service
 mkdir --parents /etc/nomad.d
 chmod 700 /etc/nomad.d
-echo -e "${data.nomad_hcl.rendered}" > /etc/nomad.d/nomad.hcl
-echo -e "${data.server_hcl.rendered}" > /etc/nomad.d/server.hcl
-echo -e "${data.client_hcl.rendered}" >  /etc/nomad.d/client.hcl
+echo -e "${data.template_file.nomad_hcl.rendered}" > /etc/nomad.d/nomad.hcl
+echo -e "${data.template_file.server_hcl.rendered}" > /etc/nomad.d/server.hcl
+echo -e "${data.template_file.client_hcl.rendered}" >  /etc/nomad.d/client.hcl
 systemctl enable nomad
 systemctl start nomad
 systemctl status nomad
