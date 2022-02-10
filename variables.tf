@@ -25,3 +25,7 @@ variable "public_key" {
 variable "nomad_version" {
   default = "1.1.0"
 }
+
+variable "api_allowed_ip" {
+  default = "0.0.0.0/0"
+}
