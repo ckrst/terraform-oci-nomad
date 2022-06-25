@@ -80,6 +80,16 @@ client {
 EOF
 }
 
+data "template_file" "client2_hcl" {
+  template = <<EOF
+client {
+  enabled = true
+  servers = [ "${oci_core_instance.nomad_server.private_ip}:4647" ]
+}
+
+EOF
+}
+
 
 locals {
   nomad_server_initial_setup = <<EOF
@@ -145,8 +155,7 @@ echo -e "${data.template_file.nomad_service.rendered}" > /etc/systemd/system/nom
 mkdir --parents /etc/nomad.d
 chmod 700 /etc/nomad.d
 echo -e "${data.template_file.nomad_hcl.rendered}" > /etc/nomad.d/nomad.hcl
-# echo -e "${data.template_file.server_hcl.rendered}" > /etc/nomad.d/server.hcl
-echo -e "${data.template_file.client_hcl.rendered}" >  /etc/nomad.d/client.hcl
+echo -e "${data.template_file.client2_hcl.rendered}" >  /etc/nomad.d/client.hcl
 systemctl enable nomad
 systemctl start nomad
 systemctl status nomad
