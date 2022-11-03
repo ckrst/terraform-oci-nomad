@@ -90,9 +90,9 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: Klemensas/action-autotag@stable
+    - uses: phish108/autotag-action@1.1.52
       with:
-        GITHUB_TOKEN: "${{ secrets.GHTOKEN }}"
+        github-token: ${{ secrets.GHTOKEN}}
     - name: release
       uses: actions/create-release@v1
       id: create_release
