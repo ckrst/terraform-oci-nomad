@@ -84,6 +84,7 @@ jobs:
 
   release:
     name: 'Release'
+    needs: terraform
     runs-on: ubuntu-latest
     environment: production
     permissions:
