@@ -31,11 +31,11 @@ variable "api_allowed_ip" {
 }
 
 variable "allow_tcp_private_ports" {
-  type = list(number)
+  type        = list(number)
   description = "Allow tcp ports private"
 }
 
 variable "allow_tcp_public_ports" {
-  type = list(number)
+  type        = list(number)
   description = "Allow tcp ports public"
 }
