@@ -29,3 +29,13 @@ variable "nomad_version" {
 variable "api_allowed_ip" {
   default = "0.0.0.0/0"
 }
+
+variable "allow_tcp_private_ports" {
+  type = list(number)
+  description = "Allow tcp ports private"
+}
+
+variable "allow_tcp_public_ports" {
+  type = list(number)
+  description = "Allow tcp ports public"
+}

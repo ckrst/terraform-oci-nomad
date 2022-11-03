@@ -35,6 +35,41 @@ resource "oci_core_network_security_group_security_rule" "nomad_network_security
   }
 }
 
+resource "oci_core_network_security_group_security_rule" "nomad_network_security_group_security_rule_ingress_allow_tcp_private_ports" {
+  for_each = var.allow_tcp_private_ports
+
+  network_security_group_id = oci_core_network_security_group.nomad_network_security_group.id
+  direction                 = "INGRESS"
+  protocol                  = "6" #TCP
+  description               = "Allow nomad jobs ports"
+  source                    = var.api_allowed_ip
+  source_type               = "CIDR_BLOCK"
+  # stateless = false
+  tcp_options {
+    destination_port_range {
+      min = each.key
+      max = each.key
+    }
+  }
+}
+resource "oci_core_network_security_group_security_rule" "nomad_network_security_group_security_rule_ingress_allow_tcp_public_ports" {
+  for_each = var.allow_tcp_public_ports
+
+  network_security_group_id = oci_core_network_security_group.nomad_network_security_group.id
+  direction                 = "INGRESS"
+  protocol                  = "6" #TCP
+  description               = "Allow nomad jobs ports"
+  source                    = "0.0.0.0/0"
+  source_type               = "CIDR_BLOCK"
+  # stateless = false
+  tcp_options {
+    destination_port_range {
+      min = each.key
+      max = each.key
+    }
+  }
+}
+
 resource "oci_core_network_security_group_security_rule" "nomad_network_security_group_security_rule_egress" {
   network_security_group_id = oci_core_network_security_group.nomad_network_security_group.id
   direction                 = "EGRESS"
