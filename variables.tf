@@ -34,8 +34,16 @@ variable "allow_tcp_private_ports" {
   type        = set(string)
   description = "Allow tcp ports private"
 }
+variable "allow_udp_private_ports" {
+  type        = set(string)
+  description = "Allow udp ports private"
+}
 
 variable "allow_tcp_public_ports" {
   type        = set(string)
   description = "Allow tcp ports public"
+}
+variable "allow_udp_public_ports" {
+  type        = set(string)
+  description = "Allow udp ports public"
 }
