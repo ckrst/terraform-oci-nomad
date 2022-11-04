@@ -82,6 +82,9 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
+    - name: Terraform Validate
+      run: terraform validate
+
   release:
     name: 'Release'
     needs: terraform
